@@ -1,44 +1,40 @@
-# Seismic Devnet Docker 环境文档
+# Seismic Devnet Docker 文档
+#### Run the Container
 
-## 中文版本
-
-### 概述
-
-这个Docker环境用于运行Seismic Devnet，它包含了所有必要的工具和依赖，用于部署智能合约和发送交易到Seismic网络。该环境基于多阶段构建模式，优化了最终镜像的大小和性能。
-
-### 使用说明
-
-#### 构建镜像
-
+**拉取镜像**:
 ```bash
-docker build -t seismic-devnet .
+docker pull pmumu666/seismic-devnet:v0.1
 ```
 
-#### 运行容器
-
-**仅运行容器**：
+**进入容器的shell**:
 ```bash
-docker run -d --name seismic-container seismic-devnet
+docker run -it --name seismic pmumu666/seismic-devnet:v0.1 shell
 ```
 
-**部署合约**：
+**部署合约**:
 ```bash
-docker run -d --name seismic-container -e DEPLOY_CONTRACT=true seismic-devnet
+cd /app/packages/contract
+```
+```bash
+bash script/deploy.sh
 ```
 
-**发送交易**：
+**发送交易**:
 ```bash
-docker run -d --name seismic-container -e SEND_TRANSACTIONS=true seismic-devnet
+cd /app/packages/cli
+```
+```bash
+bash script/transact.sh
 ```
 
-**进入交互式Shell**：
-```bash
-docker run -it --name seismic-container seismic-devnet shell
-```
+### Quick check of core functions
 
-**连接到运行中的容器**：
-```bash
-docker exec -it seismic-container bash
-```
+| 功能               | 命令                          | 文件夹               |
+|--------------------|-------------------------------|------------------------|
+| deploy                | `bash script/deploy.sh`       | `/app/packages/contract` |
+| transaction           | `bash script/transact.sh`     | `/app/packages/cli`      |
 
----
+**连接到运行中的容器**:
+```bash
+docker exec -it seismic bash
+```

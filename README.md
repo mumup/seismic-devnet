@@ -1,5 +1,5 @@
 # Seismic Devnet Docker Documentation
-#### Run the Container
+## [中文文档](https://github.com/mumup/seismic-devnet/blob/main/README-CN.md)
 
 **pull the docker image**:
 ```bash
